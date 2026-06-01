@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Food — Tastes, Tips & Recipes</title>
+    <meta name="description" content="A friendly guide to food: cuisines, recipes, nutrition tips and beautiful food photos." />
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="logo">FD</div>
+          <div>
+            <h1>Food — Tastes & Recipes</h1>
+            <div class="muted">Simple ideas to cook, eat and enjoy</div>
+          </div>
+        </div>
+        <nav>
+          <a href="#cuisines">Cuisines</a>
+          <a href="#recipes">Recipes</a>
+          <a href="#tips">Nutrition</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-left">
+          <div class="kicker">Discover</div>
+          <p class="lead">Good food connects people. Explore recipes, learn quick nutrition tips and discover new cuisines from around the world.</p>
+          <p class="muted">From weeknight dinners to weekend feasts — simple, seasonal, delicious.</p>
+          <p style="margin-top:14px"><a class="cta" href="#recipes">Browse recipes</a></p>
+        </div>
+        <div class="hero-right card">
+          <h3>Quick search</h3>
+          <div class="search" style="margin-top:10px">
+            <input id="searchInput" placeholder="Search recipes, ingredients or cuisines" aria-label="Search recipes" />
+            <button id="searchBtn" class="btn-ghost">Search</button>
+          </div>
+          <div style="margin-top:12px;color:var(--muted);font-size:13px">Try: "pasta", "chickpea", "breakfast"</div>
+        </div>
+      </section>
+
+      <main class="grid">
+        <section id="cuisines" class="card">
+          <h3>Popular cuisines</h3>
+          <p class="muted">A taste tour: these cuisines are globally beloved for good reason.</p>
+          <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+            <span class="tag">Italian</span>
+            <span class="tag">Mexican</span>
+            <span class="tag">Japanese</span>
+            <span class="tag">Indian</span>
+            <span class="tag">Middle Eastern</span>
+          </div>
+        </section>
+
+        <section id="recipes" class="card recipes">
+          <h3>Featured recipes</h3>
+          <p class="muted">Easy recipes you can make tonight.</p>
+          <ul id="recipeList" style="margin-top:12px">
+            <li data-title="One-Pot Tomato Pasta"><span>One-Pot Tomato Pasta</span><button class="btn-ghost" onclick="showRecipe(event)">View</button></li>
+            <li data-title="Chickpea & Veggie Bowl"><span>Chickpea & Veggie Bowl</span><button class="btn-ghost" onclick="showRecipe(event)">View</button></li>
+            <li data-title="Sheet-Pan Lemon Salmon"><span>Sheet-Pan Lemon Salmon</span><button class="btn-ghost" onclick="showRecipe(event)">View</button></li>
+          </ul>
+        </section>
+
+        <section id="tips" class="card">
+          <h3>Nutrition tips</h3>
+          <p class="muted">Small habits for big benefits.</p>
+          <ol style="margin-top:12px;padding-left:18px">
+            <li>Prioritize whole foods — vegetables, fruits, whole grains, lean proteins and legumes.</li>
+            <li>Use herbs and citrus to add flavor instead of extra salt.</li>
+            <li>Plan simple, balanced meals: protein + whole grain + veggies.</li>
+          </ol>
+        </section>
+
+        <section class="card">
+          <h3>Photo gallery</h3>
+          <div class="gallery" style="margin-top:12px">
+            <div class="photo" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'><rect width=\'100%\' height=\'100%\' fill=\'%23ffd9cc\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'28\' fill=\'%23a22\'>Delicious Dish</text></svg>')"></div>
+            <div class="photo" style="background-image:url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'800\' height=\'600\'><rect width=\'100%\' height=\'100%\' fill=\'%23fff1cc\' /><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-size=\'28\' fill=\'%239a6\'>Fresh Salad</text></svg>')"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h3>About this page</h3>
+          <p class="muted">This simple one-page site is designed as a starting point for food lovers — add your own recipes, images and tips.</p>
+        </section>
+
+        <section class="card">
+          <h3>Get in touch</h3>
+          <p class="muted">Share a recipe or ask a question:</p>
+          <form onsubmit="submitContact(event)" style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+            <label for="name" class="sr-only">Your name</label>
+            <input id="name" placeholder="Your name" required />
+            <label for="email" class="sr-only">Email address</label>
+            <input id="email" placeholder="Email" type="email" required />
+            <label for="message" class="sr-only">Message</label>
+            <textarea id="message" rows="3" placeholder="Message" required></textarea>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <button type="submit" class="cta">Send</button>
+              <div id="contactStatus" class="muted" aria-live="polite"></div>
+            </div>
+          </form>
+        </section>
+      </main>
+
+      <footer>
+        Built with care • © <span id="year"></span>
+      </footer>
+    </div>
+
+    <script>
+      // Populate year
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function showRecipe(e){
+        const li = e.currentTarget.closest('li');
+        const title = li && li.dataset && li.dataset.title ? li.dataset.title : 'Recipe';
+        alert(title + "\n\nThis is a placeholder. Add your full recipe here with ingredients and steps.");
+      }
+
+      document.getElementById('searchBtn').addEventListener('click', function(){
+        const q = document.getElementById('searchInput').value.trim();
+        if(!q) return alert('Enter a search term like "pasta" or "salad"');
+        const found = Array.from(document.querySelectorAll('#recipeList li')).filter(li => li.dataset.title.toLowerCase().includes(q.toLowerCase()));
+        if(found.length) found[0].scrollIntoView({behavior:'smooth',block:'center'});
+        else alert('No matching recipes found. Try a different term.');
+      });
+
+      function submitContact(e){
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const message = document.getElementById('message').value.trim();
+        if(!name||!email||!message){
+          document.getElementById('contactStatus').textContent = 'Please complete all fields.';return;
+        }
+        document.getElementById('contactStatus').textContent = 'Thanks — message sent (locally)!';
+        // Reset after a short delay
+        setTimeout(()=>{document.getElementById('contactStatus').textContent='';e.target.reset()},1500);
+      }
+    </script>
+  </body>
+</html>
+
